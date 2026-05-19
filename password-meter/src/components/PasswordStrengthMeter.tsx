@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { getPasswordStrength } from "../utils/passwordStrength";
 
 export default function PasswordStrengthMeter() {
   const [password, setPassword] = useState("");
+
+  const strength = getPasswordStrength(password);
 
   return (
     <section>
@@ -14,7 +17,7 @@ export default function PasswordStrengthMeter() {
         onChange={(event) => setPassword(event.target.value)}
       />
 
-      <p>{password.length === 0 ? "vacía" : ""}</p>
+      <p>{strength}</p>
     </section>
   );
 }
